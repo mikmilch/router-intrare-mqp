@@ -1,13 +1,208 @@
-body {
+* {
+  box-sizing: border-box;
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html, body {
+  overflow-x: hidden;
+  background-color: #F9F7ED;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: bolder;
+}
+
+main {
+  padding: 0rem;
+}
+
+h1 {
+  color: #5432CF;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+h2 {
+  color: #5432CF;
+  text-align: right;
+  font-size: 1rem;
+  flex: 1;
+}
+
+h3 {
+  padding: 1rem;
+  padding-top: 0rem;
+  color: #5432CF;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.question-container {
+  position: fixed;
+  top: 20%;
+  bottom: 25%;
+  padding: 1.5rem;
+}
+
+navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  background-color: #5432CF;
+  padding: .8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+}
+
+homebutton {
+  position: fixed;
+  top: 15px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background-color: #5432CF;
+  color: #F9F7ED;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3%;
+  width: 35%;
+  margin-top: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #F9F7ED;
+  color: #5432CF;
+  border-radius: 10px;
+  margin: 0 auto;
+  font-family: 'DM Sans', sans-serif;
+  border: none;
+  text-decoration: none;
+}
+
+.btn-disabled {
+  background-color: lightgray;
+}
+
+li {
+  list-style-type: none;
+  cursor: pointer;
+  margin: 5% 0%;
+  padding: 16px 8px;
+  color: #F9F7ED;
+  background-color: #5432CF;
+  border-radius: 10px;
+  height: 30%;
+}
+
+.li-hover:hover {
+  background-color: #d8d8d8;
+  columns: #fff;
+}
+
+.li-selected {
+  color: #fff;
+  background-color: #FF6700;
+}
+
+.container {
+  width: 100%;
+  margin: auto;
+  height: 100%;
+}
+
+.quiz-container {
+  background-color: #F9F7ED;
+  padding: 1rem;
+  margin-bottom: 5rem;
+  border-radius: 4px;
+}
+
+.container p {
+  padding: 5%;
+  color: #5432CF;
+  text-align: center;
+  line-height: 2.0;
+  font-weight: bold;
+}
+
+.top-bar-container {
+  justify-content: space-inbetween;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+}
+
+.logo {
+  top: 1%;
+  left: 2%;
+  width: 100px;
+  height: auto;
+  padding: .5rem;
+}
+
+.icon {
+  left: 2%;
+  width: 40px;
+}
+
+.bottom-image {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  position: absolute;
+}
+
+.circle-container {
+  justify-content: space-evenly;
+  display: flex;
+  align-items: center;
+  margin-top: 10%;
+  bottom: 0;
+}
+
+.circle-label-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.filling-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #5432CF;
+  margin-right: 8px; /* Adjust as needed */
+}
+
+/* 18 questions. 360/18 = 20 degrees per question */
+.completed-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: 
+    conic-gradient(
+      #FF6700 0deg var(--end-angle, 0deg),
+        transparent var(--end-angle, 0deg) 360deg
+      );
+}
+
+.stage-label {
+  flex: 1; 
+  text-align: center;
+  color: #FF6700;
+  padding-top: .5rem;
 }
