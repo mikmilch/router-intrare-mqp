@@ -23,7 +23,8 @@ const Introduction = () => {
             </p>
             <p>
               Tomará aproximadamente 10 minutos, y puede tomarse el tiempo que necesite.
-            </p>            
+            </p>   
+            <img src={bottomFiller} alt="Bottom Image" className="bottom-image" />         
           </div>
         </main>
         <navbar>
@@ -31,7 +32,6 @@ const Introduction = () => {
                 <button onClick={handleClick}>Empieza</button>
             </div>
         </navbar>
-        <img src={bottomFiller} alt="Bottom Image" className="bottom-image" />
       </body>
     );
   }
