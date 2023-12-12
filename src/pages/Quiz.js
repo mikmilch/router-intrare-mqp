@@ -1,8 +1,12 @@
 import styles from '../index.css';
 import React, { useState } from 'react';
 import { quiz } from './data.js';
-import logo from './logo.png';
 import icon from './icon.png';
+import stronglyAgree from './StronglyAgree.png';
+import agree from './Agree.png';
+import neutral from './Neutral.png';
+import disagree from './Disagree.png';
+import stronglyDisagree from './Strongly Disagree.png';
 import { useNavigate } from 'react-router-dom';
 
 const Quiz = () => {
@@ -114,17 +118,28 @@ const Quiz = () => {
             {!showResult ? (
               <div className='quiz-container'>
                 <h3>{questions[activeQuestion].question}</h3>
-                {answers.map((answer, idx) => (
-                  <li
-                    key={idx}
-                    onClick={() => onAnswerSelected(answer, idx)}
-                    className={
-                      selectedAnswerIndex === idx ? 'li-selected' : 'li-hover'
-                    }
-                  >
-                    <span>{answer}</span>
-                  </li>
-                ))}
+                <div className='answer-container'>
+                    <div className='emotive-image-container'>
+                            <img src={stronglyAgree} alt='Strongly Agree' className='emotive-image' />
+                            <img src={agree} alt='Agree' className='emotive-image' />
+                            <img src={neutral} alt='Neutral' className='emotive-image' />
+                            <img src={disagree} alt='Disagree' className='emotive-image' />
+                            <img src={stronglyDisagree} alt='Strongly Disagree' className='emotive-image' />
+                    </div>
+                    <div className='li-container'>
+                        {answers.map((answer, idx) => (
+                        <li
+                            key={idx}
+                            onClick={() => onAnswerSelected(answer, idx)}
+                            className={
+                            selectedAnswerIndex === idx ? 'li-selected' : 'li-hover'
+                            }
+                        >
+                            <span>{answer}</span>
+                        </li>
+                        ))}
+                    </div>
+                </div>
                 <div className='circle-container'>
                     {/* Stage 1 */}
                     <div className='circle-label-container'>
