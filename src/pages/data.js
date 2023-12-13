@@ -57,7 +57,7 @@ export const quiz = {
     },
     {
       id: 10,
-      question: 'Puedo cambiar mi forma de hablar dependiendo de la situación.',
+      question: 'Me importa lo que digan y piensen los demás.',
       answers: ['Muy de acuerdo', 'De acuerdo', 'Neutral', 'En desacuerdo', 'Muy de desacuerdo'],
       correctAnswer: 'Trapp',
     },
