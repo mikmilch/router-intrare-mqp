@@ -1,6 +1,6 @@
-import logo from './logo.png'
+import logo from './images/logo.png'
 import resultsExample from './Results Example.jpeg';
-import bottomFiller from './bottomFiller.png';
+import bottomFiller from './images/bottomFiller.png';
 import styles from '../index.css';
 import { useNavigate } from 'react-router-dom';
 

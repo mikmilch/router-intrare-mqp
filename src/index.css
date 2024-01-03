@@ -206,3 +206,40 @@ li {
   color: #FF6700;
   padding-top: .5rem;
 }
+
+.encouragement-container {
+  position: fixed;
+  top: 30%;
+  left: 18%;
+  padding: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.encouragement-message {
+  position: absolute;
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: 'DM Sans', sans-serif;
+  color: #F9F7ED;
+  width: 90%;
+}
+
+#burst-8 {
+  background: #FF6700;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transform: rotate(20deg);
+}
+#burst-8:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 200px;
+  width: 200px;
+  background: inherit;
+  transform: rotate(135deg);
+}
