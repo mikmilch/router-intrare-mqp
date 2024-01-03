@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 
 const Quiz = () => {
     const [activeQuestion, setActiveQuestion] = useState(0);
-    const [checked, setChecked] = useState(false);
     const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
     const [showResult, setShowResult] = useState(false);
     const [showEncouragement, setShowEncouragement] = useState(false);
@@ -15,7 +14,7 @@ const Quiz = () => {
 
     const [user, setUser] = useState(new User());
     const { questions } = quiz;
-    const { question, answers, correctAnswer } = questions[activeQuestion];
+    const { question, answers } = questions[activeQuestion];
 
   
     // Show encouragement message for 3 seconds
@@ -34,7 +33,6 @@ const Quiz = () => {
     
     //   Select and check answer
     const onAnswerSelected = (idx, answerIdx) => {
-        setChecked(true);
         setSelectedAnswerIndex(answerIdx);
         setUser((prevUser) => {
             prevUser.addAnswer(idx, answerIdx);
@@ -44,7 +42,7 @@ const Quiz = () => {
 
     // Calculate score and increment to next question
     const nextQuestion = () => {
-        setSelectedAnswerIndex(null);
+        setSelectedAnswerIndex(user.getAnswer(activeQuestion + 1));
         if (activeQuestion !== questions.length - 1) {
             setActiveQuestion((prev) => prev + 1);
             setUser((prevUser) => {
@@ -55,11 +53,10 @@ const Quiz = () => {
             setActiveQuestion(0);
             setShowResult(true);
         }
-        setChecked(false);
     };
 
     const previousQuestion = () => {
-        setSelectedAnswerIndex(null);
+        setSelectedAnswerIndex(user.getAnswer(activeQuestion - 1));
         if (activeQuestion !== 0) {
             setActiveQuestion((prev) => prev - 1);
             setUser((prevUser) => {
@@ -67,7 +64,6 @@ const Quiz = () => {
                 return prevUser;
             });
         }
-        setChecked(false);
     };
 
     const navigate = useNavigate();
@@ -178,7 +174,7 @@ const Quiz = () => {
                             <div className='stage-label'>Etapa 3</div>
                         </div>
                     </div>
-                    {checked ? (
+                    {(selectedAnswerIndex > -1) ? (
                     <navbar>
                         <button 
                         onClick={handlePreviousButtonClick}

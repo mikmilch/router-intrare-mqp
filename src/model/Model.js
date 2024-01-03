@@ -3,7 +3,7 @@ import { encouragements } from './Encouragement.js';
 export class User {
     constructor( ){
         this.currentQuestion = 0;
-        this.answers = Array(42).fill(0);;
+        this.answers = Array(42);
     }
 
     nextQuestion(){
