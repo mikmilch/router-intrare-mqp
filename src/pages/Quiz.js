@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 const Quiz = () => {
     const [activeQuestion, setActiveQuestion] = useState(0);
     const [selectedAnswerIndex, setSelectedAnswerIndex] = useState(null);
+    const [unansweredQuestionAlert, setUnansweredQuestionAlert] = useState(false);
+    const [noPreviousQuestionAlert, setNoPreviousQuestionAlert] = useState(false);
     const [showResult, setShowResult] = useState(false);
     const [showEncouragement, setShowEncouragement] = useState(false);
     const timerId = useRef(null);
@@ -75,20 +77,31 @@ const Quiz = () => {
         };
 
     const handlePreviousButtonClick = () => {
-        previousQuestion();
-        updateStage2EndAngle();
-        updateStage3EndAngle();
+        if (activeQuestion === 0) {
+            setNoPreviousQuestionAlert(true);
+        } else {
+            setNoPreviousQuestionAlert(false);
+            previousQuestion();
+            updateStage2EndAngle();
+            updateStage3EndAngle();
+        }
     }
 
     const handleNextButtonClick = () => {
-        nextQuestion();
-        updateStage2EndAngle();
-        updateStage3EndAngle();
-        if(user.getEncouragement(activeQuestion+1)){
-            setShowEncouragement(true);
+        if ( (selectedAnswerIndex === null) || (selectedAnswerIndex === undefined) ) {
+            setUnansweredQuestionAlert(true);
         }
-        else{
-            setShowEncouragement(false);
+        else {
+            setUnansweredQuestionAlert(false);
+            nextQuestion();
+            updateStage2EndAngle();
+            updateStage3EndAngle();
+            if(user.getEncouragement(activeQuestion+1)){
+                setShowEncouragement(true);
+            }
+            else{
+                setShowEncouragement(false);
+            }
         }
     }
 
@@ -111,12 +124,11 @@ const Quiz = () => {
     };
 
     return (
-        <body>
-            <div className='container'>
-                <div className='top-bar-container'>
-                    <img src={icon} alt='icon' className='icon' />
-                    <homebutton onClick={handleHomeButtonClick}>X</homebutton>
-                </div>
+        <div className='container'>
+            <div className='top-bar-container'>
+                <img src={icon} alt='icon' className='icon' />
+                <div className='homebutton' onClick={handleHomeButtonClick}>X</div>
+            </div>
             <div>
                 {!showResult ? (
                 <div className='quiz-container'>
@@ -126,6 +138,24 @@ const Quiz = () => {
                             </div>
                             <div className='encouragement-message'>
                                 {user.getEncouragement(activeQuestion)}
+                            </div>
+                        </div>
+                        ) : null
+                    }
+                    { unansweredQuestionAlert ? (
+                        <div className='alert-container'>
+                            <div className='alert-close' onClick={() => setUnansweredQuestionAlert(false)}>X</div>
+                            <div className='alert-message'>
+                                Por favor seleccione una respuesta.
+                            </div>
+                        </div>
+                        ) : null
+                    }
+                    { noPreviousQuestionAlert ? (
+                        <div className='alert-container'>
+                            <div className='alert-close' onClick={() => setNoPreviousQuestionAlert(false)}>X</div>
+                            <div className='alert-message'>
+                                No hay preguntas anteriores.
                             </div>
                         </div>
                         ) : null
@@ -174,31 +204,16 @@ const Quiz = () => {
                             <div className='stage-label'>Etapa 3</div>
                         </div>
                     </div>
-                    {(selectedAnswerIndex > -1) ? (
-                    <navbar>
+                    <div className='navbar'>
                         <button 
-                        onClick={handlePreviousButtonClick}
-                        disabled={activeQuestion === 0}
-                        className={activeQuestion === 0 ? 'btn-disabled' : ''}
-                        >Anterior</button> 
-                        <button onClick={handleNextButtonClick} className='button'>
-                        {activeQuestion === question.length - 1 ? 'Termina' : 'Siguiente'}
-                        </button>
-                        
-                    </navbar>
-                    ) : (
-                    <navbar>
+                            onClick={handlePreviousButtonClick}
+                            className={activeQuestion === 0 ? 'btn-disabled' : ''}>
+                        Anterior</button>
                         <button 
-                        onClick={handlePreviousButtonClick}
-                        disabled={activeQuestion === 0}
-                        className={activeQuestion === 0 ? 'btn-disabled' : ''}
-                        >Anterior</button>  
-                        <button onClick={handleNextButtonClick} disabled className='btn-disabled'>
-                        {' '}
-                        {activeQuestion === question.length - 1 ? 'Termina' : 'Siguiente'}
-                        </button>
-                    </navbar>
-                    )}
+                            onClick={handleNextButtonClick}
+                            className={! (selectedAnswerIndex > -1) ? 'btn-disabled' : ''}>
+                        Siguiente</button>
+                    </div>
                 </div>
                 ) : (
                 <div className='quiz-container'>
@@ -209,16 +224,15 @@ const Quiz = () => {
                     <p>
                         Usted acaba de terminar el cuestionario. Por favor, haga clic en el botón de abajo para ver sus resultados.
                     </p>
-                    <navbar>
+                    <div className='navbar'>
                         <div className='container'>
                             <button onClick={handleResultsButtonClick}>Portada</button>
                         </div>
-                    </navbar>
+                    </div>
                 </div>
                 )}
             </div>
-            </div>
-        </body>
+        </div>
     );
 }
 

@@ -11,18 +11,16 @@ const Results = () => {
     };
 
     return (
-      <body>
-        <homebutton onClick={handleHomeButtonClick}>X</homebutton>
-        <main>
-          <div className='container'>
+        <div>
+            <div className='homebutton' onClick={handleHomeButtonClick}>X</div>
+            <div className='container'>
             <img src={logo} alt='logo' className='logo' />
             <h1> </h1>
             <h1>Perfil de Competencias</h1>
             <h1>Resultados</h1>
             <h1>En Progreso</h1>
             </div>
-        </main>
-        </body>
+        </div>
     );
   }
 
