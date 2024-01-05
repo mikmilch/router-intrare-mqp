@@ -4,6 +4,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { quiz } from './data.js';
 import icon from './images/icon.png';
 import { useNavigate } from 'react-router-dom';
+import stronglyAgree from './images/StronglyAgree.png';
+import agree from './images/Agree.png';
+import neutral from './images/Neutral.png';
+import disagree from './images/Disagree.png';
+import stronglyDisagree from './images/Strongly Disagree.png';
 
 const Quiz = () => {
     const [activeQuestion, setActiveQuestion] = useState(0);
@@ -161,17 +166,24 @@ const Quiz = () => {
                         ) : null
                     }
                     <h3>{questions[activeQuestion].question}</h3>
-                    {answers.map((answer, idx) => (
+                    <div className='answer-container'>
+                        <div className='emotive-image-container'><img src={stronglyAgree} alt='Strongly Agree' className='emotive-image' /></div>
+                        <div className='emotive-image-container'><img src={agree} alt='Agree' className='emotive-image' /></div>
+                        <div className='emotive-image-container'><img src={neutral} alt='Neutral' className='emotive-image' /></div>
+                        <div className='emotive-image-container'><img src={disagree} alt='Disagree' className='emotive-image' /></div>
+                        <div className='emotive-image-container'><img src={stronglyDisagree} alt='Strongly Disagree' className='emotive-image' /></div>
+                        {answers.map((answer, idx) => (
                         <li
                             key={idx}
-                            onClick={() => onAnswerSelected(activeQuestion, idx)}
+                            onClick={() => onAnswerSelected(answer, idx)}
                             className={
                             selectedAnswerIndex === idx ? 'li-selected' : 'li-hover'
                             }
                         >
                             <span>{answer}</span>
                         </li>
-                    ))}
+                        ))}
+                    </div>
                     <div className='circle-container'>
                         {/* Stage 1 */}
                         <div className='circle-label-container'>

@@ -91,6 +91,35 @@ button {
   text-decoration: none;
 }
 
+.answer-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  grid-template-rows: repeat(5, 3rem);
+  grid-auto-flow: column;
+  column-gap: 1rem;
+  row-gap: 1rem;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+.emotive-image-container {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.emotive-image {
+  width: 4rem;
+  height: auto;
+}
+
+.li-container {
+  width: 70%;
+  justify-content: right;
+}
+
 li {
   list-style-type: none;
   cursor: pointer;
@@ -99,12 +128,13 @@ li {
   color: #F9F7ED;
   background-color: #5432CF;
   border-radius: 10px;
-  height: 30%;
+  height: 100%;
 }
 
 .li-hover:hover {
   background-color: #5432CF;
   columns: #fff;
+  margin-top: 5%;
 }
 
 .li-selected {
